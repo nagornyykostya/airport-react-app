@@ -1,12 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-// import store from './store.js';
+import { BrowserRouter } from "react-router-dom";
+
+import FlightsSearch from './FlightsSearch/components/FlightsSearch.jsx';
+import store from './store.js';
 
 function App() {
   return (
-    <Provider>
-      <div>Airport</div>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <FlightsSearch />
+      </Provider>
+    </BrowserRouter>
   );
 }
 

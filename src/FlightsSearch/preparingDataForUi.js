@@ -1,0 +1,32 @@
+var moment = require('moment');
+
+
+const getStatus = (flight) => {
+
+    switch (flight.status) {
+        case 'CX': return 'Canceled';
+        case 'DP': return 'Departed';
+    }
+    return flight.status
+}
+
+export const getFLightDataForUI = (flight) => {
+    return {
+        ...flight,
+        timeDepShedule: moment(flight.timeDepShedule).format('hh:mm'),
+        timeDepExpectCalc: moment(flight.timeDepExpectCalc).format('hh:mm'),
+        timeArrShedule: moment(flight.timeArrShedule).format('hh:mm'),
+        timeArrExpectCalc: moment(flight.timeArrExpectCalc).format('hh:mm'),
+        status: getStatus(flight)
+    }
+}
+
+export const isMatchingSearch = (flight, searchText) => {
+
+    const { flightNumber, airLineName, airportName } = flight;
+    const lowerCaseSearch = searchText.toLowerCase();
+
+    return (flightNumber.toLowerCase().includes(lowerCaseSearch)
+        || airLineName.toLowerCase().includes(lowerCaseSearch)
+        || airportName.toLowerCase().includes(lowerCaseSearch))
+}
