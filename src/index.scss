@@ -60,6 +60,9 @@ body {
     transition: 0.3s ease-in-out;
     text-transform: uppercase;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 80px;
 
     &:hover {
       border-radius: 0 40px 0 0;

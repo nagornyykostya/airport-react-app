@@ -1,38 +1,45 @@
-import React from "react";
-import { Route, Switch, Link, useLocation, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Switch, Link } from "react-router-dom";
 import FlightsList from "./FlightsList.jsx";
+import useQuery from "../useQuery.js";
 
-const FlightsScreen = ({ toggleDeparture, isDeparture, flights, searchText }) => {
+const FlightsScreen = ({ toggleDeparture, setSearchValue, searchText }) => {
+  let query = useQuery();
+  const isSelected = query.get("type") === "departures";
 
+  useEffect(() => {
+    if (query.get("searchString") !== null) {
+      setSearchValue(query.get("searchString"));
+    }
+    toggleDeparture(isSelected);
+  }, [isSelected]);
 
   return (
     <>
       <nav className="flights-nav">
         <Link
           className={`flights-nav__btn ${
-            isDeparture && "flights-nav__btn_selected"
+            isSelected && "flights-nav__btn_selected"
           }`}
-          to={`/departures`}
-          onClick={() => toggleDeparture(true)}
+          to={`/departures?type=departures&searchString=${searchText}`}
         >
           Departures
         </Link>
         <Link
           className={`flights-nav__btn ${
-            !isDeparture && "flights-nav__btn_selected"
+            !isSelected && "flights-nav__btn_selected"
           }`}
-          to={`/arrivals`}
-          onClick={() => toggleDeparture(false)}
+          to={`/arrivals?type=arrivals&searchString=${searchText}`}
         >
           Arrivals
         </Link>
       </nav>
       <Switch>
         <Route path={`/departures`}>
-          <FlightsList flights={flights} />
+          <FlightsList />
         </Route>
         <Route path={`/arrivals`}>
-          <FlightsList flights={flights} />
+          <FlightsList />
         </Route>
       </Switch>
     </>

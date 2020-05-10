@@ -1,39 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SearchBar from "./SearchBar.jsx";
 import FlightsScreen from "./FlightsScreen.jsx";
 import { connect } from "react-redux";
 import * as flightsActions from "../flights.actions.js";
-import { isDepartureSelector, searchFlights, searchTextSelector } from "../flights.selectors.js";
-var moment = require("moment");
+import { isDepartureSelector, searchValueSelector } from "../flights.selectors.js";
 
-const FlightsSearch = ({ searchFlights, fetchFlights, toggleDeparture, isDeparture, flights, searchText  }) => {
-
-  useEffect(() => {
-    const todayDate = moment().format("llll");
-    fetchFlights(todayDate);
-  }, []);
+const FlightsSearch = ({ setSearchValue, toggleDeparture, isDeparture, searchText  }) => {
 
   return (
     <main className="flights-search">
       <h1 className="flights-search__title">Search flight</h1>
-      <SearchBar searchFlights={searchFlights} />
-      <FlightsScreen toggleDeparture={toggleDeparture} isDeparture={isDeparture} flights={flights} searchText={searchText} />
+      <SearchBar setSearchValue={setSearchValue} isDeparture={isDeparture}/>
+      <FlightsScreen toggleDeparture={toggleDeparture} isDeparture={isDeparture} setSearchValue={setSearchValue} searchText={searchText}/>
     </main>
   );
 };
 
 const mapState = (state) => {
   return {
-    flights: searchFlights(state),
     isDeparture: isDepartureSelector(state),
-    searchText: searchTextSelector(state)
+    searchText: searchValueSelector(state)
 
   };
 };
 
 const mapDisp = {
-  fetchFlights: flightsActions.fetchFlights,
-  searchFlights: flightsActions.searchFlights,
+  setSearchValue: flightsActions.setSearchValue,
   toggleDeparture: flightsActions.toggleDeparture
 };
 

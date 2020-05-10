@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const SearchBar = ({ searchFlights }) => {
+const SearchBar = ({ setSearchValue, isDeparture }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSearch = () => {
-    searchFlights(inputValue);
+    setSearchValue(inputValue);
   };
+
+  const urlParam = isDeparture ? "departures" : "arrivals";
 
   return (
     <div className="search-bar">
@@ -16,9 +19,13 @@ const SearchBar = ({ searchFlights }) => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Airline, destination or flight #"
       />
-      <button className="search-bar__btn" onClick={handleSearch}>
+      <Link
+        className="search-bar__btn"
+        onClick={handleSearch}
+        to={`/${urlParam}?type=${urlParam}&searchString=${inputValue}`}
+      >
         Search
-      </button>
+      </Link>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { STORE_FLIGHTS, SEARCH_FLIGHTS, TOGGLE_DEPARTURE } from './flights.actions.js';
+import { STORE_FLIGHTS, SET_SEARCH_VALUE, TOGGLE_DEPARTURE } from './flights.actions.js';
 
 const getRestructuredFlightsData = (flightsList) => {
     return flightsList.map(flight => {
@@ -21,7 +21,7 @@ const getRestructuredFlightsData = (flightsList) => {
 const initialState = {
     departure: [],
     arrival: [],
-    searchFlight: '',
+    searchValue: '',
     isDeparture: true
 }
 
@@ -33,10 +33,10 @@ const flightsReducer = (state = initialState, action) => {
                 departure: getRestructuredFlightsData(action.payload.flightsList.body.departure),
                 arrival: getRestructuredFlightsData(action.payload.flightsList.body.arrival)
             }
-        case SEARCH_FLIGHTS:
+        case SET_SEARCH_VALUE:
             return {
                 ...state,
-                searchFlight: action.payload.inputText
+                searchValue: action.payload.inputText
             }
             case TOGGLE_DEPARTURE:
                 return {

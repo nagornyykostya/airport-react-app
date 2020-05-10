@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FlightRow from "./FlightRow.jsx";
-import { useParams, useLocation } from "react-router";
+import { connect } from "react-redux";
+import * as flightsActions from "../flights.actions.js";
+import { isDepartureSelector, searchFlights, searchValueSelector } from "../flights.selectors.js";
+var moment = require("moment");
 
-const FlightsList = ({ flights }) => {
+const FlightsList = ({ flights, searchText, fetchFlights }) => {
 
-const {searchText} = useParams();
-  console.log(searchText)
-    
+  useEffect(() => {
+    console.log('fetching')
+    const todayDate = moment().format("llll");
+    fetchFlights(todayDate);
+  }, [searchText]);
+  
+  
   if (!flights || flights.length === 0) {
     return (
       <div className="flights-screen">
-        <div className="flights-table__no-flights">No flights</div>
+        <div className="flights-table__no-flights">No flights for this search request</div>
       </div>
     );
   }
@@ -38,4 +45,19 @@ const {searchText} = useParams();
   );
 };
 
-export default FlightsList;
+const mapState = (state) => {
+  return {
+    flights: searchFlights(state),
+    isDeparture: isDepartureSelector(state),
+    searchText: searchValueSelector(state)
+
+  };
+};
+
+const mapDisp = {
+  fetchFlights: flightsActions.fetchFlights,
+  setSearchValue: flightsActions.setSearchValue,
+  toggleDeparture: flightsActions.toggleDeparture
+};
+
+export default connect(mapState, mapDisp)(FlightsList);

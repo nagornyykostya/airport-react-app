@@ -1,7 +1,7 @@
 import * as flightsGateways from './gateways.js';
 
 export const STORE_FLIGHTS = 'STORE_FLIGHTS';
-export const SEARCH_FLIGHTS = 'SEARCH_FLIGHTS';
+export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
 export const TOGGLE_DEPARTURE = 'TOGGLE_DEPARTURE';
 
 export const toggleDeparture = (isToggled) => {
@@ -22,9 +22,9 @@ export const storeFlights = (flightsList) => {
     };
 };
 
-export const searchFlights = (inputText) => {
+export const setSearchValue = (inputText) => {
     return {
-        type: SEARCH_FLIGHTS,
+        type: SET_SEARCH_VALUE,
         payload: {
             inputText
         }
