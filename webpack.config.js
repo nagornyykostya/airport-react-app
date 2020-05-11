@@ -25,7 +25,13 @@ module.exports = (env, argv) => {
                         "css-loader",
                         "sass-loader",
                     ]
-                }
+                },
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: [
+                        'file-loader',
+                    ],
+                },
             ],
         },
         plugins: [
