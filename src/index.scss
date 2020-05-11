@@ -7,10 +7,145 @@ body {
   background-color: #e7efec;
 }
 
+.airport {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 50px;
+  width: 100vw;
+  height: 250px;
+  background-color: #134253;
+
+    &__copyright {
+      padding: 30px;
+      border-top: 1px solid #FFFFFF;
+      background-color: #134253;
+      color: #FFFFFF;
+      text-align: right;
+    }
+}
+
+.footer a {
+  color: #FFFFFF;
+  &:visited {
+    color: #FFFFFF;
+  }
+}
+
+.footer li {
+  margin: 10px;
+}
+
+.footer-info {
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFFFFF;
+
+  &__column {
+    list-style: none;
+  }
+}
+
+.news-page {
+  margin-top: 140px;
+  width: 100vw;
+  height: 100vh;
+  &__title {
+    font-size: 70px;
+    font-weight: lighter;
+    font-family: sans-serif;
+    padding: 0;
+    margin: auto;
+    margin-bottom: 40px;
+    text-align: left;
+    width: 740px;
+  }
+}
+
+.contacts-page {
+  margin-top: 140px;
+  width: 100vw;
+  height: 100vh;
+  &__title {
+    font-size: 70px;
+    font-weight: lighter;
+    font-family: sans-serif;
+    padding: 0;
+    margin: auto;
+    margin-bottom: 40px;
+    text-align: left;
+    width: 740px;
+  }
+}
+.header-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 92px;
+  background-color: #1eb7ee;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px rgba(37,40,41,.3);
+
+
+  &__logo-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    color: #FFFFFF;
+    margin: 10px;
+    margin-left: 50px;
+    text-decoration: none;
+
+    cursor: pointer;
+  }
+
+  &__logo {
+    height: 50px;
+    margin-right: 10px;
+  }
+}
+
+.header-navigation {
+  width: 30%;
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+
+  &__item {
+    text-decoration: none;
+    color: #FFFFFF;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin-left: -60px;
+  margin-top: -60px;
+  z-index: 90;
+}
+
 .flights-search {
   display: flex;
   flex-direction: column;
   width: 100vw;
+  margin-top: 140px;
 
   &__title {
     font-size: 70px;
@@ -29,13 +164,13 @@ body {
   margin: auto;
   margin-bottom: 40px;
   position: relative;
-  width: 740px;
+  width: 55vw;
 
   &__input {
     padding: 15px;
     margin: 0;
     height: 80px;
-    width: 740px;
+    width: 55vw;
     border: none;
     border-radius: 0 80px 0 0;
     font-size: 16px;
@@ -71,7 +206,7 @@ body {
 }
 
 .flights-screen {
-  width: 1120px;
+  width: 75vw;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -82,8 +217,13 @@ body {
   display: flex;
   flex-direction: row;
   height: 60px;
-  width: 1120px;
+  width: 75vw;
   margin: auto;
+
+  &__btn-img {
+    width: 30px;
+    color: blue;
+  }
 
   &__btn {
     height: 60px;
@@ -110,11 +250,25 @@ body {
     &_selected {
       background-color: #ffffff;
       color: #73d2f0;
+      width: 400px;
+      box-shadow: 0 0px 10px rgba(37, 40, 41, 0.3);
+      z-index: 2;
+
+      &:first-of-type {
+        margin-right: -100px;
+      }
+      &:last-of-type {
+        margin-left: -100px;
+      }
       &:hover {
         background-color: #ffffff;
       }
     }
   }
+}
+
+th {
+  font-weight: 100;
 }
 
 .flights-table {
@@ -132,8 +286,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 300px;
-  }
-  &__body {
   }
 
   &__terminal {
@@ -168,6 +320,7 @@ body {
 
   &__flight-item {
     height: 72px;
+    background-color: white;
     cursor: pointer;
 
     &:hover {
@@ -176,12 +329,7 @@ body {
   }
 
   &__flight-item:nth-of-type(odd) {
-    background-color: ivory;
-    &:hover {
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-    }
-  }
+    background-color: rgba(0,102,135,.1);  }
 
   &__item-airline-cell {
     height: 72px;

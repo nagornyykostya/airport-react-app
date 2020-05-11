@@ -1,6 +1,10 @@
 import { createSelector } from "reselect"
 import { getFLightDataForUI, isMatchingSearch } from "./preparingDataForUi.js";
 
+export const isLoadingSelector = (state) => {
+    return state.flights.isLoading
+}
+
 export const departureFlightsSelector = (state) => {
     return state.flights.departure
 }

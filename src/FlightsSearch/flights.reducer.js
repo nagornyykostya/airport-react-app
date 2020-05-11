@@ -1,4 +1,4 @@
-import { STORE_FLIGHTS, SET_SEARCH_VALUE, TOGGLE_DEPARTURE } from './flights.actions.js';
+import { STORE_FLIGHTS, SET_SEARCH_VALUE, TOGGLE_DEPARTURE, SET_LOADER } from './flights.actions.js';
 
 const getRestructuredFlightsData = (flightsList) => {
     return flightsList.map(flight => {
@@ -22,7 +22,8 @@ const initialState = {
     departure: [],
     arrival: [],
     searchValue: '',
-    isDeparture: true
+    isDeparture: true,
+    isLoading: false
 }
 
 const flightsReducer = (state = initialState, action) => {
@@ -42,6 +43,11 @@ const flightsReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     isDeparture: action.payload.isToggled
+                }
+            case SET_LOADER:
+                return {
+                    ...state,
+                    isLoading: action.payload.isLoading
                 }
         default: return state
     }

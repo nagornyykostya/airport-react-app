@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import FlightRow from "./FlightRow.jsx";
 import { connect } from "react-redux";
 import * as flightsActions from "../flights.actions.js";
-import { isDepartureSelector, searchFlights, searchValueSelector } from "../flights.selectors.js";
+import { isDepartureSelector, searchFlights, searchValueSelector, isLoadingSelector} from "../flights.selectors.js";
+import Loader from 'react-loader-spinner'
 var moment = require("moment");
 
-const FlightsList = ({ flights, searchText, fetchFlights }) => {
+const FlightsList = ({ flights, searchText, fetchFlights, isLoading }) => {
 
   useEffect(() => {
-    console.log('fetching')
     const todayDate = moment().format("llll");
     fetchFlights(todayDate);
   }, [searchText]);
   
-  
+
   if (!flights || flights.length === 0) {
     return (
       <div className="flights-screen">
@@ -24,6 +24,12 @@ const FlightsList = ({ flights, searchText, fetchFlights }) => {
 
   return (
     <div className="flights-screen">
+     {isLoading && <Loader className="loader"
+         type="TailSpin"
+         color="#00BFFF"
+         height={120}
+         width={120} 
+      />} 
       <table className="flights-table">
         <thead>
           <tr className="flights-table__head">
@@ -49,7 +55,8 @@ const mapState = (state) => {
   return {
     flights: searchFlights(state),
     isDeparture: isDepartureSelector(state),
-    searchText: searchValueSelector(state)
+    searchText: searchValueSelector(state),
+    isLoading: isLoadingSelector(state)
 
   };
 };

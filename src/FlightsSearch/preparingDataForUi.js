@@ -10,6 +10,21 @@ const getStatus = (flight) => {
     return flight.status
 }
 
+
+export const getTerminalClass = (term) => {
+    const modifier = `flights-table__terminal`;
+    switch (term) {
+      case "A":
+        return modifier + "_green";
+      case "B":
+        return modifier + "_purple";
+      case "C":
+        return modifier + "_red";
+      case "D":
+        return modifier + "_blue";
+    }
+  };
+
 export const getFLightDataForUI = (flight) => {
     return {
         ...flight,
