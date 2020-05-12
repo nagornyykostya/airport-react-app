@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./logo.svg";
+import logo from "./logo.svg";
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
         <Link className="header-wrapper__logo-container" to="/">
           <img
             className="header-wrapper__logo"
-            src="./logo.svg"
+            src={logo}
             alt="logo"
           />
                   <span>Kyiv Sikorskiy airport</span>
