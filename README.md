@@ -1,8 +1,11 @@
 Airport Scoreboard
+==================
+
 A airport scoreboard application that displays the current flight, search by destination, airline or flight.
 
 Go here for live demo.
-https://my-kyiv-airport.netlify.app/
+[Airport app link](https://my-kyiv-airport.netlify.app/)
+
 
 Installing
 Run npm install
