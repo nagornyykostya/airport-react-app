@@ -3,10 +3,9 @@ import FlightRow from "./FlightRow.jsx";
 import { connect } from "react-redux";
 import * as flightsActions from "../flights.actions.js";
 import { isDepartureSelector, searchFlights, searchValueSelector, isLoadingSelector} from "../flights.selectors.js";
-import Loader from 'react-loader-spinner'
 var moment = require("moment");
 
-const FlightsList = ({ flights, searchText, fetchFlights, isLoading }) => {
+const FlightsList = ({ flights, searchText, fetchFlights }) => {
 
   useEffect(() => {
     const todayDate = moment().format("llll");
@@ -24,12 +23,6 @@ const FlightsList = ({ flights, searchText, fetchFlights, isLoading }) => {
 
   return (
     <div className="flights-screen">
-     {isLoading && <Loader className="loader"
-         type="TailSpin"
-         color="#00BFFF"
-         height={120}
-         width={120} 
-      />} 
       <table className="flights-table">
         <thead>
           <tr className="flights-table__head">
@@ -55,9 +48,7 @@ const mapState = (state) => {
   return {
     flights: searchFlights(state),
     isDeparture: isDepartureSelector(state),
-    searchText: searchValueSelector(state),
-    isLoading: isLoadingSelector(state)
-
+    searchText: searchValueSelector(state)
   };
 };
 

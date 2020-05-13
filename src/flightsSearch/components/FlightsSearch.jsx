@@ -5,9 +5,11 @@ import FlightsList from "./FlightsList.jsx";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as flightsActions from "../flights.actions.js";
+import Loader from 'react-loader-spinner'
 import {
   isDepartureSelector,
   searchValueSelector,
+  isLoadingSelector
 } from "../flights.selectors.js";
 
 const FlightsSearch = ({
@@ -15,10 +17,17 @@ const FlightsSearch = ({
   toggleDeparture,
   isDeparture,
   searchText,
+  isLoading
 }) => (
   <main className="flights-search">
     <h1 className="flights-search__title">Search today's flights</h1>
     <SearchBar setSearchValue={setSearchValue} isDeparture={isDeparture} />
+    {isLoading && <Loader className="loader"
+         type="TailSpin"
+         color="#00BFFF"
+         height={120}
+         width={120} 
+      />} 
     <FlightsNav
       toggleDeparture={toggleDeparture}
       isDeparture={isDeparture}
@@ -33,6 +42,7 @@ const mapState = (state) => {
   return {
     isDeparture: isDepartureSelector(state),
     searchText: searchValueSelector(state),
+    isLoading: isLoadingSelector(state)
   };
 };
 
@@ -48,4 +58,5 @@ FlightsSearch.propTypes = {
   toggleDeparture: PropTypes.func.isRequired,
   isDeparture: PropTypes.bool.isRequired,
   searchText: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool
 };
