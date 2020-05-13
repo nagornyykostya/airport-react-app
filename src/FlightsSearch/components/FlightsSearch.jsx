@@ -43,7 +43,7 @@ const mapDisp = {
 
 export default connect(mapState, mapDisp)(FlightsSearch);
 
-FlightsSearch.PropTypes = {
+FlightsSearch.propTypes = {
   setSearchValue: PropTypes.func.isRequired,
   toggleDeparture: PropTypes.func.isRequired,
   isDeparture: PropTypes.bool.isRequired,

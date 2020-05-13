@@ -38,7 +38,7 @@ const FlightsNav = ({ toggleDeparture, setSearchValue, searchText }) => {
 
 export default FlightsNav;
 
-FlightsNav.PropTypes = {
+FlightsNav.propTypes = {
   setSearchValue: PropTypes.func,
   toggleDeparture: PropTypes.func,
   searchText: PropTypes.string,
